@@ -4,6 +4,7 @@ import cors from 'cors'
 
 import dbConnection from './config/db.js'
 import postRoutes from './routes/posts.js'
+import bodyParser from "body-parser";
 
 dotenv.config()
 const app = express()
@@ -13,7 +14,7 @@ app.use(cors())
 dbConnection
 
 //parser
-
+app.use(bodyParser.json({ limit : "30mb", extended : true })) // allow to parsing json body from client to server
 
 //routes
 app.use('/posts', postRoutes)

@@ -13,8 +13,8 @@ export const getPosts = async (req, res) => {
 
 export const createPost = async (req, res) => {
     const post = req.body
-    console.log(post)
-    const newPostModel = new PostModel({...post, creator : post.name, createdAt : new Date().toDateString() })
+    // console.log(post)
+    const newPostModel = new PostModel({...post, createdAt : new Date().toDateString() }) 
     try {
         await newPostModel.save()
         res.status(201).json(newPostModel)
