@@ -1,6 +1,7 @@
 import moment from 'moment'
 import React from 'react'
-import { MdDelete } from 'react-icons/fa'
+import { MdDelete } from 'react-icons/md'
+import { BsThreeDots } from 'react-icons/bs'
 import { useDispatch } from 'react-redux';
 
 import { deletePost } from '../action/posts';
@@ -14,17 +15,26 @@ const Post = ({post}) => {
     
   }
 
+  const selectId = (id) => {
+    dispatch({ type : 'SELECT_ID', payload : id})
+  }
+
   return (
     <div className="w-3/12 ">
     <div className='flex flex-col rounded-md bg-orange-400 mb-4 p-3 mt-5 mr-3'>
+      <div className="flex justify-end">
+        <button className='text-white text-2xl mb-2' onClick={() => selectId(post._id)}>
+          <BsThreeDots/>
+        </button>
+      </div>
       <img src={post.selectedFile || noneImageUrl} alt={post.selectedFile} className='rounded-md' />
       <div>
           <h1 className='text-2xl text-white font-semibold mt-2'>{post.title}</h1>
           <h2 className='text-white text-xl'>{post.message}</h2>
-          <h3 className='text-transparent/70'>{moment(post.createdAt).fromNow()}</h3>
+          <h3 className='text-transparent/60 mt-5'>{moment(post.createdAt).fromNow()}</h3>
       </div>
       <div className="justify-between">
-      <button onClick={() => deleteHandle()}>
+      <button className='text-2xl mt-2' onClick={() => deleteHandle()}>
         <MdDelete/>
       </button>
       </div>

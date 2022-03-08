@@ -1,20 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import FileBase from 'react-file-base64'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { RiDeleteBinLine } from 'react-icons/fa'
 
-import { createPost } from '../action/posts'
+import { createPost, updatePost } from '../action/posts'
 import Title from './Title.jsx'
 
 const Form = () => {
     const [ postData, setPostData ] = useState({ title : '', message: '', selectedFile: '' })
-    // console.log(postData)
+    const post = useSelector((state) => state.posts.currentId ? state.posts.posts.find((p) => p._id === state.posts.currentId) : null )
+    // console.log(post)
+    useEffect(() => {
+      if(post) setPostData(post)
+    },[post])
 
     const dispatch = useDispatch()
 
     const handleSubmit = () => {
-       dispatch(createPost(postData))
+      if(post._id){
+        dispatch(updatePost(post._id, postData ))
+      }else{
+        dispatch(createPost(postData))
+      }
        clear()
     }
 
