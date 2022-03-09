@@ -2,10 +2,8 @@ import React from 'react'
 
 const Container = ({children}) => {
   return (
-    <div className="min-h-screen">
-      <div className='mx-auto px-10 '>
+    <div className="min-h-screen mx-auto px-10">
           {children}
-      </div>
     </div>
   )
 }

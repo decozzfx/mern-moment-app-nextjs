@@ -4,6 +4,7 @@ import cors from 'cors'
 
 import dbConnection from './config/db.js'
 import postRoutes from './routes/posts.js'
+import userRoutes from './routes/users.js'
 import bodyParser from "body-parser";
 
 dotenv.config()
@@ -18,6 +19,7 @@ app.use(bodyParser.json({ limit : "30mb", extended : true })) // allow to parsin
 
 //routes
 app.use('/posts', postRoutes)
+app.use('/users', userRoutes)
 
 app.use('/', (req, res) => {
     res.send('Hello, Welcome to Moment App API')
