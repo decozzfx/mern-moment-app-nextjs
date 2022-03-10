@@ -15,6 +15,7 @@ app.use(cors())
 dbConnection
 
 //parser
+app.use(bodyParser.urlencoded({ limit : '30mb', extended : true }))
 app.use(bodyParser.json({ limit : "30mb", extended : true })) // allow to parsing json body from client to server
 
 //routes

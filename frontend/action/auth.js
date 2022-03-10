@@ -8,16 +8,18 @@ export const signin = (formData) => async (dispatch) => {
 
         dispatch({ type : AUTH, payload : data })
 
-        Router.push('/')
+        Router.push('/dashboard')
     } catch (error) {
         console.log(error)        
     }
 } 
 
-export const signup = async (formData) => {
+export const signup = (formData) => async (dispatch) => {
     try {
-        await api.signUp(formData)
+       const {data} = await api.signUp(formData)
+
+        // dispatch({ type : AUTH , payload : data })
     } catch (error) {
-        console.log(error)
+        console.log('action '+error)
     }
 }

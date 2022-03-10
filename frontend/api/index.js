@@ -7,5 +7,5 @@ export const createPosts = (newPost) => API.post('/posts', newPost)
 export const deletePost = (postId) => API.delete(`/posts/${postId}`)
 export const updatePost = (id, post) => API.patch(`/posts/${id}`, post)
 
-export const signIn = (formData) => API.post(`/users/signIn`, formData)
-export const signUp = (formData) => API.post(`/users/signUp`, formData)
+export const signIn = (formData) => API.post('/users/signin', formData)
+export const signUp = (formData) => API.post('/users/signup', formData)
