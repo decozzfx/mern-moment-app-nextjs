@@ -9,7 +9,6 @@ const Navbar = ({ user, setUser}) => {
     function logoutHandler(){
       dispatch({ type : 'LOGOUT' })
       Router.push('/dashboard')
-      setUser(null)
     }
 
     useEffect(() => {

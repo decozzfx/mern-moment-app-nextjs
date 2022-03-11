@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { GoogleLogin } from 'react-google-login'
 import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Router from 'next/router'
 
 import { signin, signup } from '../action/auth'
@@ -11,12 +12,15 @@ import { AiFillEyeInvisible } from 'react-icons/ai'
 const initialState = { firstName : '', lastName : '', email : '', password : '', confirmPassword : '' }
 
 const Auth = () => {
-   const dispatch = useDispatch()
+    const dispatch = useDispatch()
    
    const [ showPassword, setShowPassword ] = useState(false)
    const [ isSignup, setIsSignup ] = useState(false)
    const [ formData, setFormData ] = useState(initialState)
+
 //    console.log(formData)
+
+    // if(user) return Router.replace('/dashboard')
 
     function handleSubmit(e){
         e.preventDefault()
