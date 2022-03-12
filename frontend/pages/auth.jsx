@@ -17,6 +17,7 @@ const Auth = () => {
    const [ showPassword, setShowPassword ] = useState(false)
    const [ isSignup, setIsSignup ] = useState(false)
    const [ formData, setFormData ] = useState(initialState)
+   const [ error, setError ] = useState(false)
 
 //    console.log(formData)
 
@@ -29,7 +30,7 @@ const Auth = () => {
             clear()
             setIsSignup(false)
         }else{
-            dispatch(signin(formData))
+            dispatch(signin(formData,setError))
         }
     }
 
@@ -40,6 +41,14 @@ const Auth = () => {
    function googleSuccess(res){
         const result = res?.profileObj
         const token = res?.tokenId
+
+        try {
+            dispatch({ type : 'AUTH', payload : { result, token } })
+            Router.push('/dashboard')
+        } catch (error) {
+            console.log(error)
+        }
+
     }
 
    function googleFailure(error){
@@ -55,6 +64,7 @@ const Auth = () => {
          <div className="flex justify-center items-center h-screen bg-slate-300">
              <div className="bg-gray-100 rounded-lg w-1/4 p-10">
                 <h1 className='text-5xl text-center'>{isSignup ? 'Sign Up' : 'Sign In'}</h1>
+                { error && <div className=" py-5 p-2 text-center text-red-700">Email or passoword is invalid</div> }
                 <form className='mt-10' onSubmit={handleSubmit}>
                     <div className="flex flex-col">
                         {

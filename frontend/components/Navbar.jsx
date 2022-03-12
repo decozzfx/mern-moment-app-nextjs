@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import decode from 'jwt-decode'
 import Router, { useRouter } from 'next/router'
+import Link from 'next/link'
+import Avatar from 'react-avatar'
 
 const Navbar = ({ user, setUser}) => {
     const dispatch = useDispatch()
@@ -19,14 +21,22 @@ const Navbar = ({ user, setUser}) => {
         if(decodedToken.exp * 1000 < new Date().getTime()) logoutHandler()
       }
     },[useRouter()])
+    
+    // console.log(user)
 
   return (
     <div className='py-5 rounded-xl bg-orange-400 mt-10'>
         <div className="px-5 flex justify-between items-center">
-          <div className="text-6xl font-bold text-orange-500 p-5 border-2 shadow-lg bg-slate-100 rounded-full">Moment App</div>
+          <Link href='/dashboard'><a>
+            <div className="text-6xl font-bold text-orange-500 p-5 border-2 shadow-lg bg-slate-100 rounded-full">Moment App</div>
+          </a></Link>
             {user ? (
               <div className="flex items-center">
-                  <img className='w-2 rounded-full m-5' alt={user?.result.name} src={user?.result.name.charAt(0)}/>
+                {user?.result?.imageUrl ? (
+                  <Avatar src={user?.result?.imageUrl} size='75' round={true}/>
+                  ) : (
+                  <Avatar name={user?.result?.name} size='75' round={true} />
+                  )}
                   <div className="m-10">
                       <h3 className='text-2xl '>{user?.result.name}</h3>
                   </div>

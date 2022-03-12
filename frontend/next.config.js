@@ -5,7 +5,7 @@ module.exports = {
       {
         source : '/',
         destination : '/dashboard',
-        permanent : true
+        permanent : false
       }
     ]
   },

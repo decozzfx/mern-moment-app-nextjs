@@ -8,11 +8,9 @@ import { useSelector } from 'react-redux'
 import { getPosts } from '../action/posts.js'
 import Form from '../components/Form.jsx'
 
-
-
 const dashboard = () => {
     const user = useSelector((state) => state.auth.authData)
-    console.log(user)
+    // console.log(user)
 
     const dispatch = useDispatch()
     useEffect(() => {

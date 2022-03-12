@@ -1,7 +1,7 @@
 import { CREATE_POST, DELETE_POST, END_LOADING, FETCH_ALL, START_LOADING, SELECT_ID, UPDATE_POST } from "../constant/actionTypes"
 
 const posts = (state = { isLoading : true, currentId: '', posts : [] }, {type, payload}) => {
-    // console.log(state)
+    // console.log(payload)
     switch(type){
         case START_LOADING :
             return { ...state, isLoading : true }
@@ -12,7 +12,7 @@ const posts = (state = { isLoading : true, currentId: '', posts : [] }, {type, p
         case CREATE_POST :
             return { ...state, posts : [...state.posts, payload.data ] }
         case DELETE_POST : 
-            return { ...state, posts : state.posts.filter((post) => post.id !== payload) }
+            return { ...state, posts : state.posts.filter((post) => post._id !== payload) }
         case SELECT_ID :
             return { ...state, currentId : payload}
         case UPDATE_POST :

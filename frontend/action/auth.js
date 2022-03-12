@@ -2,7 +2,7 @@ import { AUTH } from "../constant/actionTypes";
 import * as api from '../api'
 import Router from "next/router";
 
-export const signin = (formData) => async (dispatch) => {
+export const signin = (formData, setError) => async (dispatch) => {
     try {
         const { data } = await api.signIn(formData)
 
@@ -10,7 +10,8 @@ export const signin = (formData) => async (dispatch) => {
 
         Router.push('/dashboard')
     } catch (error) {
-        console.log(error)        
+        console.log(error)
+        setError(true)        
     }
 } 
 
