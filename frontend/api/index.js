@@ -11,6 +11,8 @@ API.interceptors.request.use((req) => {
 })
 
 export const fetchPosts = () => API.get('/posts')
+export const fetchPost = (id) => API.get(`/posts/${id}`)
+
 export const createPosts = (newPost) => API.post('/posts', newPost)
 export const deletePost = (postId) => API.delete(`/posts/${postId}`)
 export const updatePost = (id, post) => API.patch(`/posts/${id}`, post)

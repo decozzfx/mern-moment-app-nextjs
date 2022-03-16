@@ -1,6 +1,6 @@
 import { Router } from 'next/router'
 import * as api from '../api'
-import { CREATE_POST, DELETE_POST, END_LOADING, FETCH_ALL, START_LOADING } from '../constant/actionTypes'
+import { CREATE_POST, DELETE_POST, END_LOADING, FETCH_ALL, FETCH_POST, START_LOADING } from '../constant/actionTypes'
 
 export const getPosts = () => async (dispatch) => {
     try {
@@ -12,6 +12,17 @@ export const getPosts = () => async (dispatch) => {
         console.log(error)
     }
 }
+
+export const getPost = (id) => async (dispatch) => {
+    try {
+        const { data } = await api.fetchPost(id)
+
+        dispatch({ type : FETCH_POST, payload : data })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const createPost = (post) => async (dispatch) => {
     try {
         const {data} = await api.createPosts(post)

@@ -16,7 +16,7 @@ const dashboard = () => {
     useEffect(() => {
         dispatch(getPosts())
         dispatch({ type : 'GETUSER' })  
-    },[dispatch])
+    },[])
 
   return (
     <Container>
